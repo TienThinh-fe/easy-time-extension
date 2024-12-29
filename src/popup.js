@@ -26,10 +26,15 @@ const getRelativeTimeFromUnix = (unix) => {
   const current = Math.floor(new Date().getTime() / 1000);
 
   const diff = current - unix;
+
+  if (isNaN(diff)) {
+    return 'Invalid date';
+  }
+
   let output = '';
 
   if (diff < 60) {
-    output = 'just now';
+    output = 'Just now';
   } else if (diff < 3600) {
     output = `${Math.floor(diff / 60)} minutes ago`;
   } else if (diff < 86400) {
